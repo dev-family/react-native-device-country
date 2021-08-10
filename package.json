@@ -1,6 +1,6 @@
 {
   "name": "react-native-device-country",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get device location by telephony (SIM card) or settings without using GPS tracker.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
