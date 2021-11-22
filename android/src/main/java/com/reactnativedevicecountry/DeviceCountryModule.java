@@ -62,7 +62,7 @@ public class DeviceCountryModule extends ReactContextBaseJavaModule {
     }
     try {
       JSONObject json = new JSONObject();
-      json.put("countryCode", countryCode);
+      json.put("code", countryCode);
       json.put("type", type);
       return json;
     } catch (Exception e) {
