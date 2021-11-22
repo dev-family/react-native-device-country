@@ -53,15 +53,33 @@ RCT_EXPORT_METHOD(
 - (NSString *)getCountryCodeFromTelephonyNetworkInfo
 {
   @try {
-    CTTelephonyNetworkInfo * network_Info = [CTTelephonyNetworkInfo new];
-    CTCarrier * carrier = network_Info.subscriberCellularProvider;
+    CTTelephonyNetworkInfo * telephony = [CTTelephonyNetworkInfo new];
+    CTCarrier *carrier;
+    if (@available(iOS 12.1, *)) {
+      NSDictionary<NSString *, CTCarrier *> *carriers = [telephony serviceSubscriberCellularProviders];
+      carrier = [self firstCarrier:carriers];
+    } else if (@available(iOS 12, *)) {
+      NSDictionary<NSString *, CTCarrier *> *carriers = [telephony valueForKey:@"serviceSubscriberCellularProvider"];
+      carrier = [self firstCarrier:carriers];
+    }
+    if (carrier == nil) {
+        carrier = [telephony subscriberCellularProvider];
+    }
     NSString * countryCode = [carrier.isoCountryCode uppercaseString];
-
     return countryCode;
   }
   @catch ( NSException *e ) {
     return NULL;
   }
+}
+
+- (CTCarrier *)firstCarrier:(NSDictionary<NSString *, CTCarrier *> *)carriers {
+  NSEnumerator * en = [carriers objectEnumerator];
+  if ([[en.allObjects firstObject] isKindOfClass:(CTCarrier.class)]) {
+      CTCarrier * carrier = (CTCarrier *)[en.allObjects firstObject];
+      return carrier;
+  }
+  return nil;
 }
 
 - (NSString *)getCountryCodeFromLocale
