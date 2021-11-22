@@ -16,10 +16,8 @@ export default function App() {
   const [countryCodeTelephony, setCountryCodeTelephony] = React.useState<
     ResolveType | undefined
   >();
-  const [
-    countryCodeConfiguration,
-    setCountryCodeConfiguration,
-  ] = React.useState<ResolveType | undefined>();
+  const [countryCodeConfiguration, setCountryCodeConfiguration] =
+    React.useState<ResolveType | undefined>();
 
   React.useEffect(() => {
     getCurrentContry().then((result) => {
