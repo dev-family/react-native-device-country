@@ -1,6 +1,13 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text, SafeAreaView, StatusBar } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from 'react-native';
 import DeviceCountry, {
   // TYPE_ANY,
   TYPE_TELEPHONY,
@@ -16,19 +23,23 @@ export default function App() {
   const [countryCodeTelephony, setCountryCodeTelephony] = React.useState<
     ResolveType | undefined
   >();
-  const [countryCodeConfiguration, setCountryCodeConfiguration] =
-    React.useState<ResolveType | undefined>();
+  const [
+    countryCodeConfiguration,
+    setCountryCodeConfiguration,
+  ] = React.useState<ResolveType | undefined>();
 
   React.useEffect(() => {
     getCurrentContry().then((result) => {
       setCountryCodeAny(result);
     });
-    getCurrentContry(TYPE_TELEPHONY).then((result) => {
-      setCountryCodeTelephony(result);
-    });
-    getCurrentContry(TYPE_CONFIGURATION).then((result) => {
-      setCountryCodeConfiguration(result);
-    });
+    if (Platform.OS != 'ios') {
+      getCurrentContry(TYPE_TELEPHONY).then((result) => {
+        setCountryCodeTelephony(result);
+      });
+      getCurrentContry(TYPE_CONFIGURATION).then((result) => {
+        setCountryCodeConfiguration(result);
+      });
+    }
   }, []);
 
   const getCurrentContry = async (type?: Types) => {

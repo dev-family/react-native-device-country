@@ -2,7 +2,7 @@
 
 # react-native-device-country
 
-Get device location by telephony (SIM card) or settings without using GPS tracker
+Get device location settings without using GPS tracker or by telephony (SIM card) (Android only)
 
 [![npm version](https://badge.fury.io/js/react-native-device-country.svg)](https://www.npmjs.org/package/react-native-device-country)
 [![npm](https://img.shields.io/npm/dt/react-native-device-country.svg)](https://www.npmjs.org/package/react-native-device-country)
@@ -11,7 +11,10 @@ Get device location by telephony (SIM card) or settings without using GPS tracke
 [![Platform - Android](https://img.shields.io/badge/platform-Android-3ddc84.svg?style=flat&logo=android)](https://www.android.com)
 [![Platform - iOS](https://img.shields.io/badge/platform-iOS-000.svg?style=flat&logo=apple)](https://developer.apple.com/ios)
 
+<p float="left">
 <img width="400" height="auto" center src="https://github.com/dev-family/react-native-device-country/blob/main/docs/screenshot.png?raw=true" />
+<img width="400" height="auto" center src="https://github.com/dev-family/react-native-device-country/blob/main/docs/screenshot_android.png?raw=true" />
+</p>
 
 ## Installation
 
@@ -30,11 +33,7 @@ _Don't forget to run `pod install` after that!_
 ## Usage
 
 ```js
-import DeviceCountry, {
-  TYPE_ANY,
-  TYPE_TELEPHONY,
-  TYPE_CONFIGURATION,
-} from 'react-native-device-country';
+import DeviceCountry from 'react-native-device-country';
 
 // ...
 
@@ -48,35 +47,41 @@ DeviceCountry.getCountryCode()
   });
 ```
 
-### You can use spicific method for getting country
+### On Android you can use spicific method for getting country
 
 `TYPE_TELEPHONY` for getting country code from SIM card
 
 ```js
+import DeviceCountry, {
+  TYPE_TELEPHONY,
+  TYPE_CONFIGURATION,
+  TYPE_ANY,
+} from 'react-native-device-country';
+
 DeviceCountry.getCountryCode(TYPE_TELEPHONY)
   .then((result) => {
     console.log(result);
-    // {"code": "BY", "type": "telephony"}
+    // {"code": "PT", "type": "telephony"}
   })
   .catch((e) => {
     console.log(e);
   });
 ```
 
-or `TYPE_CONFIGURATION` for getting country code from phone location settings on iOS and phone language settings on Android
+or `TYPE_CONFIGURATION` for getting country code from phone language settings on Android
 
 ```js
 DeviceCountry.getCountryCode(TYPE_CONFIGURATION)
   .then((result) => {
     console.log(result);
-    // {"code": "BY", "type": "config"}
+    // {"code": "RU", "type": "config"}
   })
   .catch((e) => {
     console.log(e);
   });
 ```
 
-`TYPE_ANY` will be used by default. It tries to use `TYPE_TELEPHONY` and fallbacks with `TYPE_CONFIGURATION`, if devive without SIM card.
+`TYPE_ANY` will be used by default. It tries to use `TYPE_TELEPHONY` (on Android) and fallbacks with `TYPE_CONFIGURATION`, if devive without SIM card.
 
 ## Contributing
 
