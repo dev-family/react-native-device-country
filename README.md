@@ -11,6 +11,8 @@ Get device location settings without using GPS tracker or by telephony (SIM card
 [![Platform - Android](https://img.shields.io/badge/platform-Android-3ddc84.svg?style=flat&logo=android)](https://www.android.com)
 [![Platform - iOS](https://img.shields.io/badge/platform-iOS-000.svg?style=flat&logo=apple)](https://developer.apple.com/ios)
 
+💜[FOLLOW FOR RECENT NEWS](https://twitter.com/dev___family)💜
+
 <p float="left">
 <img width="400" height="auto" center src="https://github.com/dev-family/react-native-device-country/blob/main/docs/screenshot_ios.png?raw=true" />
 <img width="400" height="auto" center src="https://github.com/dev-family/react-native-device-country/blob/main/docs/screenshot_android.png?raw=true" />
