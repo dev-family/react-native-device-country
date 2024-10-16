@@ -6,7 +6,7 @@ buildscript {
         }
 
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.5.3'
+            classpath 'com.android.tools.build:gradle:7.4.0'
         }
     }
 }
@@ -18,11 +18,11 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('DeviceCountry_compileSdkVersion', 31)
+    compileSdkVersion safeExtGet('DeviceCountry_compileSdkVersion', 33)
     buildToolsVersion safeExtGet('DeviceCountry_buildToolsVersion', '29.0.2')
     defaultConfig {
-        minSdkVersion safeExtGet('DeviceCountry_minSdkVersion', 16)
-        targetSdkVersion safeExtGet('DeviceCountry_targetSdkVersion', 31)
+        minSdkVersion safeExtGet('DeviceCountry_minSdkVersion', 23)
+        targetSdkVersion safeExtGet('DeviceCountry_targetSdkVersion', 33)
         versionCode 1
         versionName "1.0"
 
@@ -49,6 +49,7 @@ repositories {
         url("$rootDir/../node_modules/react-native/android")
     }
     google()
+    mavenCentral()
     jcenter()
 }
 

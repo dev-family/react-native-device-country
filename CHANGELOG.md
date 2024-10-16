@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.5
+
+### Changed
+
+- Updated minimum supported SDK version to `minSdkVersion` 23 to meet the requirements of `react-native` version 0.73.0.
+- Updated the country code retrieval function to prioritize the **system language** instead of the app language on Android.
+
 ## v1.0.4
 
 ### Changed

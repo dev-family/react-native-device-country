@@ -3,6 +3,9 @@ package com.reactnativedevicecountry;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import androidx.annotation.NonNull;
+import android.content.res.Resources; 
+import android.os.Build; 
+import java.util.Locale; 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -85,15 +88,19 @@ public class DeviceCountryModule extends ReactContextBaseJavaModule {
     }
   }
 
-  protected String getCountryCodeFromConfiguration() {
+ protected String getCountryCodeFromConfiguration() {
     try {
-      String countryCode = reactContext
-        .getResources()
-        .getConfiguration()
-        .locale.getCountry();
-      return countryCode;
+        Locale systemLocale;
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            systemLocale = Resources.getSystem().getConfiguration().getLocales().get(0);
+        } else {
+            systemLocale = Resources.getSystem().getConfiguration().locale;
+        }
+        
+        return systemLocale.getCountry();
     } catch (Exception e) {
-      return null;
+        return null;
     }
-  }
+}
 }
