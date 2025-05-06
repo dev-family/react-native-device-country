@@ -83,7 +83,7 @@ DeviceCountry.getCountryCode(TYPE_CONFIGURATION)
   });
 ```
 
-`TYPE_ANY` will be used by default. It tries to use `TYPE_TELEPHONY` (on Android) and fallbacks with `TYPE_CONFIGURATION`, if devive without SIM card.
+`TYPE_ANY` will be used by default. It tries to use `TYPE_TELEPHONY` (on Android) and fallbacks with `TYPE_CONFIGURATION`, if device without SIM card.
 
 ## Contributing
 
