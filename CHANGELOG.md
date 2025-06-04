@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.1
+
+### Fixed
+
+- Update README.md ([0368a7ba9f2078a298f60e650f28f18d22c41655](https://github.com/dev-family/react-native-device-country/pull/12/commits/0368a7ba9f2078a298f60e650f28f18d22c41655) by [@AhteshamKhanCoder](https://github.com/AhteshamKhanCoder))
+
 ## v1.0.5
 
 ### Changed
