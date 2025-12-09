@@ -20,6 +20,9 @@ Get device location settings without using GPS tracker or by telephony (SIM card
 
 ## Installation
 
+- react-native-device-country V2 requires the new architecture/TurboModules to be enabled
+- for old architecture please use react-native-device-country V1.1.1
+
 ```sh
 yarn add react-native-device-country
 ```

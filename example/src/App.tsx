@@ -23,16 +23,14 @@ export default function App() {
   const [countryCodeTelephony, setCountryCodeTelephony] = React.useState<
     ResolveType | undefined
   >();
-  const [
-    countryCodeConfiguration,
-    setCountryCodeConfiguration,
-  ] = React.useState<ResolveType | undefined>();
+  const [countryCodeConfiguration, setCountryCodeConfiguration] =
+    React.useState<ResolveType | undefined>();
 
   React.useEffect(() => {
     getCurrentContry().then((result) => {
       setCountryCodeAny(result);
     });
-    if (Platform.OS != 'ios') {
+    if (Platform.OS !== 'ios') {
       getCurrentContry(TYPE_TELEPHONY).then((result) => {
         setCountryCodeTelephony(result);
       });

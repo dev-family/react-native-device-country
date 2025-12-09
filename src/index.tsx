@@ -1,5 +1,5 @@
-import { NativeModules, Platform } from 'react-native';
-const { DeviceCountryModule } = NativeModules;
+import { Platform } from 'react-native';
+import DeviceCountryModule from './specs/NativeDeviceCountry';
 export const TYPE_ANY = 'any';
 export const TYPE_TELEPHONY = 'telephony';
 export const TYPE_CONFIGURATION = 'config';
@@ -29,8 +29,8 @@ export const getCountryCodeIOS = () => {
 export const getCountryCodeAndroid = (type?: Types) => {
   return new Promise<ResolveType>((resolve, reject) => {
     DeviceCountryModule.getCountryCode(type || TYPE_ANY)
-      .then((result: string) => {
-        resolve(JSON.parse(result));
+      .then((result) => {
+        resolve(result);
       })
       .catch((e: any) => {
         reject(e);

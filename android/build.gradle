@@ -2,26 +2,30 @@ buildscript {
     if (project == rootProject) {
         repositories {
             google()
-            jcenter()
+            mavenCentral()
         }
 
         dependencies {
-            classpath 'com.android.tools.build:gradle:7.4.0'
+            classpath 'com.android.tools.build:gradle:8.7.2'
+
         }
     }
 }
 
 apply plugin: 'com.android.library'
+apply plugin: "kotlin-android"
+apply plugin: "com.facebook.react"
 
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
 android {
-    compileSdkVersion safeExtGet('DeviceCountry_compileSdkVersion', 33)
-    buildToolsVersion safeExtGet('DeviceCountry_buildToolsVersion', '29.0.2')
+    namespace "com.reactnativedevicecountry"
+    compileSdkVersion safeExtGet('DeviceCountry_compileSdkVersion', 34)
+    buildToolsVersion safeExtGet('DeviceCountry_buildToolsVersion', '33.0.0')
     defaultConfig {
-        minSdkVersion safeExtGet('DeviceCountry_minSdkVersion', 23)
+        minSdkVersion safeExtGet('DeviceCountry_minSdkVersion', 21)
         targetSdkVersion safeExtGet('DeviceCountry_targetSdkVersion', 33)
         versionCode 1
         versionName "1.0"
@@ -50,10 +54,16 @@ repositories {
     }
     google()
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
-    //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+  implementation "com.facebook.react:react-android"
+  implementation 'com.google.android.gms:play-services-pay:16.5.0'
+  implementation "com.google.android.gms:play-services-wallet:19.4.0"
 }
+
+  react {
+    jsRootDir = file("../src/")
+    libraryName = "NativeDeviceCountry"
+    codegenJavaPackageName = "com.reactnativedevicecountry"
+  }
